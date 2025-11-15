@@ -1,0 +1,154 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  padding: var(--gap);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.block {
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  height: auto;
+}
+
+/*LEFT BLOCK CONTAINER*/
+.left-block {
+  position: relative;
+  overflow: hidden;
+  --nb-r: 10px;
+  --nb-w: 256px;
+  --nb-h: 28px;
+  height: 100%;
+}
+
+.left-block video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.left-block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/*RIGHT BLOCK CONTAINER*/
+.right-block-container {
+  display: grid;
+  grid-template-rows: 4fr 6fr;
+  gap: var(--gap);
+  height: 100%;
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+/*TOP-RIGHT BLOCK CONTAINER*/
+.top-right-block {
+  background-color: transparent;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+  gap: var(--gap);
+}
+
+.sub-block {
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  height: 100%;
+  background-color: transparent;
+  padding: 0;
+}
+
+.sub-block-a {
+  background-color: black;
+  padding: 20px;
+  text-align: left;
+  transition: background-color 0.4s ease-out;
+}
+
+.sub-block-a:hover {
+  background-color: #111111;
+}
+
+.sub-block-b {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  gap: var(--gap);
+  background-color: transparent;
+}
+
+.quadrant-block {
+  background-color: black;
+  color: #6C6C6C;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 300;
+  border-radius: var(--border-radius);
+  padding: 0 20px;
+
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.4s ease-out;
+}
+
+.quadrant-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #111111;
+  z-index: 1;
+  transition: width 0.3s ease-out;
+}
+
+.quadrant-block:hover::before {
+  width: 100%;
+}
+
+/*BOTTOM-RIGHT BLOCK CONTAINER*/
+.bottom-right-block {
+  position: relative;
+  overflow: hidden;
+  --nb-r: 10px;
+  --nb-w: 144px;
+  --nb-h: 28px;
+  height: 100%;
+}
+
+.bottom-right-block video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bottom-right-block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+  pointer-events: none;
+}
