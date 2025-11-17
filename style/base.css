@@ -83,6 +83,44 @@ h4 {
     }
 }
 
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.letters-loader {
+    display: flex;
+    gap: 4px;
+}
+
+.letter {
+    font-size: 50px;
+    font-weight: 500;
+    color: #ffffff;
+    display: inline-block;
+    animation: pulse 1.2s infinite;
+}
+
+.letter:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        color: rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        transform: scale(1.1);
+        color: rgba(255, 255, 255, 1);
+    }
+}
+
 @media (max-width: 430px) {
     .nebo,
     .nebo--tl,
