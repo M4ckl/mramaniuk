@@ -469,8 +469,17 @@
     }
 
     .design-img {
-        max-width: 90%;
-        max-height: 90%;
+        position: relative;
+        top: 10%;
+        left: auto;
+        transform: none;
+        width: 90%;
+        height: auto;
+        max-width: none;
+        max-height: none;
+        margin: 0 auto;
+        display: block;
+    
     }
     
     .tech-tag-container {
