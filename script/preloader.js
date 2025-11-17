@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return;
     }
-
+    
     function waitForVideo(video) {
         return new Promise(resolve => {
             if (!video) return resolve();
