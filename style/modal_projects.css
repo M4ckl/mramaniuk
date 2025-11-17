@@ -469,19 +469,23 @@
     }
 
     .design-img {
-        position: relative;
-        top: 10%;
-        left: auto;
-        transform: none;
-        width: 90%;
-        height: auto;
-        max-width: none;
-        max-height: none;
-        margin: 0 auto;
-        display: block;
+        position: absolute;
+        top: 50%;      
+        left: 50%;      
+        transform: translate(-50%, -50%);
+
+        max-width: 90%;
+        max-height: 90%;
+
+        object-fit: contain; 
+
+        width: auto; 
+        height: auto; 
     
+        margin: 0;
+        display: block; 
     }
-    
+        
     .tech-tag-container {
         gap: 8px;
         padding-left: 15px;
