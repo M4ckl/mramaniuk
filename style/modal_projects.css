@@ -513,6 +513,7 @@
         overflow: hidden;
         
         font-size: 0.9em;
+        transition: transform 0.2s ease-out;
     }
 
     .code-button-inner-white {
@@ -534,6 +535,10 @@
         color: black;
         font-weight: 500;
         font-size: 0.9em;
+    }
+
+    .static-code-button-outer:hover {
+        transform: scale(1.01);
     }
 
     .vertical-progress-bar-fill {
