@@ -82,3 +82,29 @@ h4 {
         transform: scale(1.0);
     }
 }
+
+@media (max-width: 430px) {
+    .nebo,
+    .nebo--tl,
+    .nebo--tr,
+    .nebo--bl,
+    .nebo--br {
+        --nb-w: 0 !important;
+        --nb-h: 0 !important;
+        --nb-r: 0 !important;
+    }
+
+    .nebo::before,
+    .nebo::after,
+    .nebo--tl::before,
+    .nebo--tl::after,
+    .nebo--tr::before,
+    .nebo--tr::after,
+    .nebo--bl::before,
+    .nebo--bl::after,
+    .nebo--br::before,
+    .nebo--br::after {
+        display: none !important;
+        content: none !important;
+    }
+}
