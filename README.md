@@ -20,3 +20,4 @@ The design focuses on usability, responsiveness, and smooth interactions, includ
 
 ## Last updates
 - Mobile optimization
+- bug fixies
