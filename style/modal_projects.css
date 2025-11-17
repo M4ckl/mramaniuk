@@ -332,11 +332,10 @@
 /* STATIC CODE BUTTON STYLES */
 .static-code-button-outer {
     position: fixed;
-    z-index: 202;
-    left: 50%;
-    transform: translateX(-50%);
     bottom: 7%;
-
+    inset-inline: 0;
+    margin-inline: auto;
+    width: max-content;
     text-decoration: none;
     transition: transform 0.2s ease-out;
 }
@@ -350,11 +349,10 @@
     font-weight: 400;
     box-shadow: 0 4px 16px rgb(0, 0, 0, 0.4);
     padding: 8px 30px;
-
 }
 
 .static-code-button-outer:hover {
-    transform: translateX(-50%) scale(1.05);
+    transform: scale(1.1);
 }
 
 @media (max-width: 430px) {
@@ -535,10 +533,6 @@
         color: black;
         font-weight: 500;
         font-size: 0.9em;
-    }
-
-    .static-code-button-outer:hover {
-        transform: scale(1.01);
     }
 
     .vertical-progress-bar-fill {
