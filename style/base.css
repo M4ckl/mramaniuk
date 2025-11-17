@@ -121,6 +121,13 @@ h4 {
     }
 }
 
+video::-webkit-media-controls {
+    display: none !important;
+}
+video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+}
+
 @media (max-width: 430px) {
     .nebo,
     .nebo--tl,
