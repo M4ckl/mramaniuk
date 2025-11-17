@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const isMobile = window.innerWidth <= 430;
+
     const video1 = document.querySelector(".left-block video");
     const video2 = document.querySelector(".bottom-right-block video");
     const preloader = document.getElementById("preloader");
@@ -7,11 +9,23 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!v) return;
         v.muted = true;
         v.playsInline = true;
-        v.play().catch(err => console.log("Autoplay blocked:", err));
+        v.autoplay = true;
+
+        v.play().catch(e => console.log("Autoplay blocked:", e));
     });
+
+    if (isMobile) {
+        if (preloader) preloader.style.display = "none";
+
+        if (video1) video1.style.opacity = "1";
+        if (video2) video2.style.opacity = "1";
+
+        return;
+    }
 
     function waitForVideo(video) {
         return new Promise(resolve => {
+            if (!video) return resolve();
             if (video.readyState >= 3) resolve();
             else video.addEventListener("canplaythrough", resolve, { once: true });
         });
@@ -20,15 +34,17 @@ document.addEventListener("DOMContentLoaded", () => {
     function waitForImages() {
         const images = Array.from(document.images);
         return Promise.all(images.map(img =>
-            img.complete ? Promise.resolve() :
-                new Promise(resolve => img.onload = img.onerror = resolve)
+            img.complete
+                ? Promise.resolve()
+                : new Promise(resolve => img.onload = img.onerror = resolve)
         ));
     }
 
-    Promise.all([ waitForVideo(video1), waitForVideo(video2), waitForImages() ])
+    Promise.all([waitForVideo(video1), waitForVideo(video2), waitForImages()])
         .then(() => {
             preloader.style.display = "none";
-            video1.style.opacity = "1";
-            video2.style.opacity = "1";
+            if (video1) video1.style.opacity = "1";
+            if (video2) video2.style.opacity = "1";
         });
 });
+
