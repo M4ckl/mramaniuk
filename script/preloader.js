@@ -23,12 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
         preloader.style.display = "none";
 
         video1.style.opacity = "1";
-        video1.style.visibility = "visible";
         video2.style.opacity = "1";
-        video2.style.visibility = "visible";
 
         video1.currentTime = 0;
         video2.currentTime = 0;
-        Promise.all([video1.play(), video2.play()]).catch(err => console.log(err));
+
+        video1.play().catch(e => console.log("Autoplay blocked:", e));
+        video2.play().catch(e => console.log("Autoplay blocked:", e));
     });
 });
