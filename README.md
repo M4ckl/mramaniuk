@@ -1,8 +1,8 @@
-# M.RAMANIUK Portfolio Website v1.01
+# M.RAMANIUK Portfolio Website v1.1
 
 Welcome to my personal portfolio website! This project showcases my skills, projects, and experience as a mobile developer, with a focus on iOS development.
 
-## 📄 About
+## About
 
 This portfolio website is designed to present my work and skills in a clean, modern, and interactive way. It includes:
 
@@ -13,11 +13,10 @@ This portfolio website is designed to present my work and skills in a clean, mod
 
 The design focuses on usability, responsiveness, and smooth interactions, including video backgrounds and interactive modals.
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Frontend:** HTML5, CSS3, JavaScript
 - **Design:** Figma
 
 ## Last updates
-- Mobile optimization
-- bug fixies
+- **Design**
