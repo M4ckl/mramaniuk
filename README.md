@@ -23,4 +23,4 @@ The design focuses on usability, responsiveness, and smooth interactions, includ
 - **Interactive 3D Sphere:** Replaced the static 2D skills circle with a dynamic, interactive 3D skills sphere.
 - **Theme Switcher:** Implemented a seamless Light/Dark mode button to improve accessibility and user experience.
 - **Micro-animations:** Added refined, fluid micro-animations across UI elements for a more polished "Apple-like" feel.
-- **Enhanced Interactivity:** Upgraded overall layout responsiveness and improved user interactions throughout the site.
+- **Enhanced Interactivity:** Upgraded overall layout responsiveness and improved user interactions throughout the site. 
