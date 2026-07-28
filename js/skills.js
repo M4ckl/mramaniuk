@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const skills = ["Swift", "SwiftUI", "iOS", "UI Design", "Git", "Xcode",
-        "Figma", "Python", "HTML", "CSS", "JS", "UIKit", "Kotlin"];
+    const skills = ["Swift", "SwiftUI", "iOS", "UI Design", "Git", "Xcode", "MVVM", "MVP",
+        "Figma", "Python", "HTML", "CSS", "JS", "UIKit", "Kotlin", "Java", "Docker", "AI"];
 
     const circle = document.querySelector('.circle');
     const container = document.querySelector('.skills-container');
