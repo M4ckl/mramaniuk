@@ -377,7 +377,6 @@ body {
     transform: rotate(-8deg) scale(1.1);
 }
 
-/* Invert monochrome social icons in dark theme */
 :root[data-theme="dark"] .social-icon {
     filter: invert(1) brightness(1.6);
 }
