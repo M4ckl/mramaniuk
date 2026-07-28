@@ -2,8 +2,35 @@
 :root {
     --bg-color: #F7F7F7;
     --card-bg: #FFFFFF;
+    --text-primary: #000000;
+    --text-muted: #8E8E93;
+    --surface: #efefef;
+    --surface-hover: #d9d9d9;
+    --divider: #F2F2F7;
+    --accent: #000000;
+    --accent-contrast: #FFFFFF;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    --dot-base: 20;
+    --dot-glow: rgba(0, 0, 0, 0.12);
+
     --gap: 24px;
     --radius: 32px;
+    --ease: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+:root[data-theme="dark"] {
+    --bg-color: #0b0b0d;
+    --card-bg: #151517;
+    --text-primary: #f4f4f5;
+    --text-muted: #6f6f76;
+    --surface: #1f1f23;
+    --surface-hover: #2b2b31;
+    --divider: #232327;
+    --accent: #f4f4f5;
+    --accent-contrast: #0b0b0d;
+    --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    --dot-base: 150;
+    --dot-glow: rgba(255, 255, 255, 0.16);
 }
 
 * {
@@ -12,13 +39,57 @@
     box-sizing: border-box;
 }
 
+/* ===========ENTRANCE ANIMATION=========== */
+@keyframes rise-in {
+    from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.94);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.logo-text,
+.card,
+.theme-toggle {
+    animation: rise-in 1s var(--ease) both;
+}
+
+.logo-text {
+    animation-delay: 0.05s;
+}
+
+.left-column > .card {
+    animation-delay: 0.15s;
+}
+
+.right-column > .card:nth-child(1) {
+    animation-delay: 0.28s;
+}
+
+.right-column > .card:nth-child(2) {
+    animation-delay: 0.41s;
+}
+
+.right-column > .card:nth-child(3) {
+    animation-delay: 0.54s;
+}
+
+.theme-toggle {
+    animation-delay: 0.8s;
+}
+
 /* ===========GLOBAL LAYOUT=========== */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-color);
+    color: var(--text-primary);
     height: 100vh;
     overflow: hidden;
     padding: var(--gap);
+    transition: background-color 0.5s var(--ease);
 }
 
 .layout-container {
@@ -47,8 +118,9 @@ body {
     background-color: var(--card-bg);
     border-radius: var(--radius);
     padding: 32px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    box-shadow: var(--card-shadow);
     position: relative;
+    transition: background-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
 
 .card-fill {
@@ -69,17 +141,19 @@ body {
     font-weight: 400;
     letter-spacing: 1px;
     line-height: 1;
-    color: #000000;
+    color: var(--text-primary);
     z-index: 10;
+    transition: color 0.5s var(--ease);
 }
 
 .badge {
-    color: #8E8E93;
+    color: var(--text-muted);
     font-weight: 500;
     text-transform: uppercase;
     font-size: 18px;
     letter-spacing: 0.5px;
     position: absolute;
+    transition: color 0.5s var(--ease);
 }
 
 .badge-top-left {
@@ -95,10 +169,11 @@ body {
 .divider,
 .about-divider {
     height: 2px;
-    background-color: #F2F2F7;
+    background-color: var(--divider);
     border-radius: 10px;
     width: 100%;
     margin-top: 28px;
+    transition: background-color 0.5s var(--ease);
 }
 
 .divider {
@@ -109,7 +184,7 @@ body {
     margin-bottom: 0;
 }
 
-/* ===========SKILLS ANIMATION (LEFT COLUMN)=========== */
+/* ===========SKILLS 3D SPHERE (LEFT COLUMN)=========== */
 .skills-container {
     position: absolute;
     top: 50%;
@@ -119,30 +194,19 @@ body {
     height: 600px;
 }
 
-.center-text {
+.circle {
     position: absolute;
+    width: 600px;
+    height: 600px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #000000;
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    z-index: 2;
-}
-
-.circle {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+    transform-origin: center;
 }
 
 .dot {
     position: absolute;
     border-radius: 50%;
-    transition: all 0.6s ease, transform 0.4s ease;
     color: transparent;
     text-align: center;
     font-size: 0;
@@ -150,31 +214,126 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1;
+    will-change: transform, opacity;
+    transition: background-color 0.6s var(--ease),
+        color 0.5s var(--ease),
+        box-shadow 0.6s var(--ease),
+        padding 0.5s var(--ease),
+        width 0.5s var(--ease),
+        height 0.5s var(--ease);
 }
 
 .dot.active {
     border-radius: 999px;
     width: auto !important;
-    min-width: 80px;
-    padding: 0 16px;
-    height: 36px !important;
-    font-size: 14px;
-    font-weight: 500;
-    z-index: 10;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    min-width: 78px;
+    padding: 0 18px;
+    height: 34px !important;
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    background: var(--accent) !important;
+    color: var(--accent-contrast) !important;
+    box-shadow: 0 12px 26px var(--dot-glow);
+    backdrop-filter: blur(2px);
+}
+
+/* ===========THEME TOGGLE=========== */
+.theme-toggle {
+    position: fixed;
+    left: 40px;
+    bottom: 40px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: transform 0.4s var(--ease), background-color 0.5s var(--ease),
+        color 0.5s var(--ease), box-shadow 0.4s var(--ease);
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+}
+
+.theme-toggle:active {
+    transform: translateY(0) scale(0.96);
+}
+
+.theme-toggle svg {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    transition: transform 0.5s var(--ease), opacity 0.4s var(--ease);
+}
+
+.theme-toggle .icon-sun {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.4);
+}
+
+.theme-toggle .icon-moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.4);
+}
+
+.theme-ripple {
+    position: fixed;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none;
+    z-index: 90;
+    will-change: transform, opacity;
 }
 
 /* ===========ABOUT SECTION=========== */
 .about-text {
     margin: 18px 0 0 0;
-    background-color: #efefef;
+    background-color: var(--surface);
     border-radius: 20px;
     padding: 20px 24px;
     line-height: 1.6;
     font-size: 16px;
     font-weight: 400;
-    color: #000000;
+    color: var(--text-primary);
+    transition: background-color 0.5s var(--ease), color 0.5s var(--ease);
+}
+
+.about-text.typing::after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 1.05em;
+    margin-left: 2px;
+    vertical-align: -0.15em;
+    background: var(--text-primary);
+    animation: caret-blink 0.9s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+    50% {
+        opacity: 0;
+    }
 }
 
 /* ===========SOCIALS SECTION=========== */
@@ -185,31 +344,42 @@ body {
 }
 
 .social-btn {
-    background-color: #efefef;
+    background-color: var(--surface);
     border-radius: 20px;
     padding: 16px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: background-color 0.4s var(--ease), transform 0.35s var(--ease);
 }
 
 .social-btn:hover {
-    background-color: #d2d2d2;
-    transform: scale(1.02);
+    background-color: var(--surface-hover);
+    transform: translateY(-2px) scale(1.02);
 }
 
 .social-text {
-    color: #000000;
+    color: var(--text-primary);
     font-size: 15px;
     font-weight: 500;
+    transition: color 0.5s var(--ease);
 }
 
 .social-icon {
     width: 32px;
     height: 32px;
     object-fit: contain;
+    transition: transform 0.4s var(--ease);
+}
+
+.social-btn:hover .social-icon {
+    transform: rotate(-8deg) scale(1.1);
+}
+
+/* Invert monochrome social icons in dark theme */
+:root[data-theme="dark"] .social-icon {
+    filter: invert(1) brightness(1.6);
 }
 
 /* ===========PORTFOLIO SECTION=========== */
@@ -231,7 +401,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding-bottom: 20px;
+    padding: 4px 12px 20px;
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
@@ -251,19 +421,20 @@ body {
 }
 
 .portfolio-btn {
-    background-color: #efefef;
+    background-color: var(--surface);
     border-radius: 20px;
     padding: 16px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: background-color 0.4s var(--ease), transform 0.35s var(--ease);
     flex-shrink: 0;
 }
 
 .portfolio-btn:hover {
-    background-color: #d2d2d2;
+    background-color: var(--surface-hover);
+    transform: translateX(4px);
 }
 
 .portfolio-info {
@@ -273,27 +444,34 @@ body {
 }
 
 .portfolio-text {
-    color: #000000;
+    color: var(--text-primary);
     font-size: 16px;
     font-weight: 500;
+    transition: color 0.5s var(--ease);
 }
 
 .portfolio-arrow {
-    color: #000000;
+    color: var(--text-primary);
     font-size: 20px;
     font-weight: 600;
+    transition: color 0.5s var(--ease), transform 0.4s var(--ease);
+}
+
+.portfolio-btn:hover .portfolio-arrow {
+    transform: translate(3px, -3px);
 }
 
 .hover-badge {
-    background-color: #000000;
-    color: #FFFFFF;
+    background-color: var(--accent);
+    color: var(--accent-contrast);
     font-size: 12px;
     font-weight: 500;
     padding: 4px 12px;
     border-radius: 20px;
     opacity: 0;
     transform: translateX(-10px);
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity 0.35s var(--ease), transform 0.35s var(--ease),
+        background-color 0.5s var(--ease), color 0.5s var(--ease);
 }
 
 .portfolio-btn:hover .hover-badge {
@@ -314,13 +492,23 @@ body {
 .scroll-dot {
     width: 6px;
     height: 6px;
-    background-color: #D1D1D6;
+    background-color: var(--text-muted);
+    opacity: 0.5;
     border-radius: 50%;
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.35s var(--ease);
 }
 
 .scroll-dot.active {
     width: 10px;
     height: 10px;
-    background-color: #000000;
+    opacity: 1;
+    background-color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
 }
